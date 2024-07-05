@@ -1,12 +1,12 @@
 {
-	"name": "direkt.bahn.guru",
+	"name": "direkt-bahn",
 	"version": "0.0.0",
 	"private": true,
-	"homepage": "https://github.com/juliuste/direkt.bahn.guru",
-	"bugs": "https://github.com/juliuste/direkt.bahn.guru/issues",
-	"repository": "juliuste/direkt.bahn.guru",
+	"homepage": "https://github.com/schaerfo/direkt-bahn",
+	"bugs": "https://github.com/schaerfo/direkt-bahn/issues",
+	"repository": "schaerfo/direkt-bahn",
 	"license": "GPL-3.0",
-	"author": "Julius Tens <mail@juliustens.eu>",
+	"author": "Christian Schärf <direkt-bahn@christian.schaerf.email>",
 	"type": "module",
 	"scripts": {
 		"build": "webpack",
