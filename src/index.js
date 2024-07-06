@@ -114,7 +114,7 @@ const translate = token => {
 	return translationForLanguage
 }
 
-mapboxGl.accessToken = 'pk.eyJ1IjoianVsaXVzdGUiLCJhIjoiY2t2N3UyeDZ2MjdqZjJvb3ZmcWNyc2QxbSJ9.oB7xzSTcmeDMcl4DhjSl0Q'
+mapboxGl.accessToken = 'pk.eyJ1Ijoic2N1cnZ5NTMwNCIsImEiOiJjbHk5dnM2OWswMTluMmtxdDE3bHR3a3JuIn0.e0yESauQL8nilmBdvP0stw'
 const map = new mapboxGl.Map({
 	container: 'map',
 	style: 'mapbox://styles/mapbox/light-v10',
