@@ -190,7 +190,7 @@ const selectLocation = async (id, local) => {
 		type: 'FeatureCollection',
 		features: [],
 	}
-	return fetch(`https://api.direkt.bahn.guru/${formatStationId(origin.id)}?localTrainsOnly=${local ? 'true' : 'false'}&v=4`)
+	return fetch(`https://api.direkt-bahn.v6.rocks/${formatStationId(origin.id)}?localTrainsOnly=${local ? 'true' : 'false'}&v=4`)
 		.then(res => res.json())
 		.then(async results => {
 			const resultsWithLocations = results.map(r => ({
