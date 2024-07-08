@@ -49,6 +49,15 @@ export const durationCategoryColour = c => {
 	return '#999'
 }
 
+export const frequencyScale = f => {
+	if (!f) return -1
+	if (f < 5) return 3.5
+	if (f < 10) return 3
+	if (f < 20) return 2.5
+	if (f < 50) return 2
+	return 1.5
+}
+
 export const toPoint = language => station => ({
 	center: [station.location.longitude, station.location.latitude],
 	geometry: {

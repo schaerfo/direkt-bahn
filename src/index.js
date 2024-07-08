@@ -22,6 +22,7 @@ import {
 	isRegion,
 	hasLocation,
 	fetchStation,
+	frequencyScale,
 } from './helpers.js'
 import { MapboxFilterControl } from './filter.js'
 
@@ -205,6 +206,8 @@ const selectLocation = async (id, local) => {
 					name: r.name,
 					duration: durationCategory(r.duration),
 					durationMinutes: r.duration,
+					frequency: r.frequency,
+					frequencyScale: frequencyScale(r.frequency),
 					calendarUrl: r.calendarUrl,
 					dbUrlGerman: r.dbUrlGerman,
 					dbUrlEnglish: r.dbUrlEnglish,
@@ -231,8 +234,16 @@ const selectLocation = async (id, local) => {
 						'interpolate',
 						['linear'],
 						['zoom'],
-						4.5, ['*', 4.5, ['/', 2, ['number', ['get', 'type']]]], // origin = 1, destination = 2
-						15, ['*', 12, ['/', 2, ['number', ['get', 'type']]]], // origin = 1, destination = 2
+						4.5, ['*', 4.5, ['/', 2, [
+							'case',
+							['==', ['number', ['get', 'type']], 1], 1, // origin
+							['number', ['get', 'frequencyScale']], // destination: scale down with decreasing frequency
+						]]],
+						15, ['*', 12, ['/', 2, [
+							'case',
+							['==', ['number', ['get', 'type']], 1], 1, // origin
+							['number', ['get', 'frequencyScale']], // destination: scale down with decreasing frequency
+						]]],
 					],
 					'circle-color': [
 						'interpolate',
@@ -281,7 +292,7 @@ const selectLocation = async (id, local) => {
 
 			map.on('mouseenter', 'stations', e => {
 				const coordinates = e.features[0].geometry.coordinates.slice()
-				const { name, duration, durationMinutes, dbUrlGerman } = e.features[0].properties
+				const { name, duration, durationMinutes, frequency, dbUrlGerman } = e.features[0].properties
 
 				let durationElement = ''
 				if (Number.isInteger(durationMinutes)) {
@@ -290,10 +301,15 @@ const selectLocation = async (id, local) => {
 					durationElement = ` <b style="color: ${durationColour};">${formattedDuration}h</b>`
 				}
 
+				let frequencyElement = ''
+				if (Number.isInteger(frequency)) {
+					frequencyElement = `<br><div style="text-align: center;">${frequency} Züge/Tag</div>`
+				}
+
 				popupOpenSince = new Date()
 				popupOpenFor = dbUrlGerman
 				popup.setLngLat(coordinates)
-					.setHTML(`${name}${durationElement}`)
+					.setHTML(`${name}${durationElement}${frequencyElement}`)
 					.addTo(map)
 				map.getCanvas().style.cursor = 'pointer'
 			})
