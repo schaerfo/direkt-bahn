@@ -401,4 +401,34 @@ map.addControl(new MapboxFilterControl([
 	else queryState.remove('local')
 	const origin = selectedOrigin()
 	if (origin) onSelectLocation(origin, local)
+},
+(enabled) => {
+	if (enabled) {
+		let stationLayerId = null
+		const stationLayer = map.getLayer('stations')
+		if (stationLayer) stationLayerId = stationLayer.id
+		map.addSource('openrailwaymap', {
+			type: 'raster',
+			tiles: ['https://tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png'],
+			tileSize: 256,
+			attribution:
+					'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA 2.0</a> <a href="http://www.openrailwaymap.org/">OpenRailwayMap</a>',
+		})
+		map.addLayer(
+			{
+				id: 'openrailwaymap',
+				type: 'raster',
+				source: 'openrailwaymap',
+				minzoom: 0,
+				maxzoom: 22,
+				paint: {
+					'raster-opacity': 0.4,
+				},
+			},
+			stationLayerId,
+		)
+	} else {
+		if (map.getLayer('openrailwaymap')) map.removeLayer('openrailwaymap')
+		if (map.getSource('openrailwaymap')) map.removeSource('openrailwaymap')
+	}
 }))

@@ -3,10 +3,11 @@
 export class MapboxFilterControl {
 	entries = []
 	defaultEntry = null
-	constructor (entries, defaultEntry, onChange) {
+	constructor (entries, defaultEntry, onChange, onOrmToggled) {
 		this.entries = entries
 		this.defaultEntry = defaultEntry
 		this.onChange = onChange.bind(this)
+		this.onOrmToggled = onOrmToggled.bind(this)
 		this.onDocumentClick = this.onDocumentClick.bind(this)
 	}
 
@@ -47,6 +48,22 @@ export class MapboxFilterControl {
 			if (entry.isActive) entryElement.classList.add('active')
 			this.mapStyleContainer.appendChild(entryElement)
 		}
+
+		this.mapStyleContainer.appendChild(document.createElement('hr'))
+		const ormToggle = document.createElement('button')
+		ormToggle.addEventListener('click', event => {
+			const button = event.target
+			const active = button.classList.contains('active')
+			this.onOrmToggled(!active)
+			if (active) {
+				button.classList.remove('active')
+			} else {
+				button.classList.add('active')
+			}
+			this.closeModal()
+		})
+		ormToggle.innerText = 'OpenRailwayMap overlay'
+		this.mapStyleContainer.appendChild(ormToggle)
 
 		this.entryButton.classList.add('mapboxgl-ctrl-icon')
 		this.entryButton.classList.add('mapboxgl-filter-switch')
