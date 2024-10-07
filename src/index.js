@@ -95,6 +95,14 @@ const translations = {
 		de: 'Leider konnten für die Station, die du gesucht hast, keine Verbindungen gefunden werden.',
 		en: 'Unfortunately, we couldn\'t find any connections for the station you selected.',
 	},
+	trainFrequencyPlural: {
+		de: 'Züge/Tag',
+		en: 'trains per day',
+	},
+	trainFrequencySingular: {
+		de: 'Zug/Tag',
+		en: 'train per day',
+	},
 	unknownErrorAlertTitle: {
 		de: 'Huch?!',
 		en: 'Oops?!',
@@ -303,7 +311,7 @@ const selectLocation = async (id, local) => {
 
 				let frequencyElement = ''
 				if (Number.isInteger(frequency)) {
-					frequencyElement = `<br><div style="text-align: center;">${frequency} Züge/Tag</div>`
+					frequencyElement = `<br>${frequency} ${translate(frequency === 1 ? 'trainFrequencySingular' : 'trainFrequencyPlural')}`
 				}
 
 				popupOpenSince = new Date()
