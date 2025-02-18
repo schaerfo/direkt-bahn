@@ -176,9 +176,9 @@ const geocoder = new MapboxGeocoder({
 	localGeocoder: () => [], // the mapbox geocoder library has a slightly awkward api, which requires this stub to disable requests to the "normal" mapbox place search api
 	localGeocoderOnly: true,
 	externalGeocoder: async (query) => {
-		const results = await (fetchStation(query).then(res => res.json()))
-		const filteredResults = results.filter(x => isLongDistanceOrRegionalOrSuburban(x) && !isRegion(x) && hasLocation(x))
-		return filteredResults.map(toPoint(language))
+		const response = await (fetchStation(query).then(res => res.json()))
+		const result = response.data.map(toPoint(language))
+		return result
 	},
 })
 map.addControl(geocoder)
@@ -186,46 +186,22 @@ map.addControl(geocoder)
 let popupOpenSince = null
 let popupOpenFor = null
 const selectLocation = async (id, local) => {
-	const origin = await stationById(id)
-	if (!origin) {
-		const error = new Error('Station not found.')
-		error.code = 'STATION_NOT_FOUND'
-		throw error
-	}
-	geocoder.setPlaceholder(origin.name || translate('searchPlaceholder'))
-	geocoder.setInput('')
-
-	const pageTitle = document.querySelector('title')
-	if (origin.name) pageTitle.innerHTML = [encode(origin.name), translate('baseTitle')].join(' | ')
-	const stationFeature = {
-		type: 'feature',
-		geometry: locationToPoint(origin.location),
-		properties: {
-			type: 1,
-			name: origin.name,
-			duration: durationCategory(0),
-			durationMinutes: 0,
-		},
-	}
 	const geojson = {
 		type: 'FeatureCollection',
 		features: [],
 	}
-	return fetch(`https://api.direkt-bahn.v6.rocks/${formatStationId(origin.id)}?localTrainsOnly=${local ? 'true' : 'false'}&v=4`)
+	return fetch(`http://localhost:8000/api/query/v1/${id}`)
 		.then(res => res.json())
 		.then(async results => {
-			const resultsWithLocations = results.map(r => ({
-				...r,
-				location: r.location,
-			})).filter(r => !!r.location)
+			const resultsWithLocations = results.data.filter(r => !!r.station.location)
 			const features = sortBy(resultsWithLocations.map(r => ({
 				type: 'feature',
-				geometry: locationToPoint(r.location),
+				geometry: locationToPoint(r.station.location),
 				properties: {
 					type: 2,
-					name: r.name,
-					duration: durationCategory(r.duration),
-					durationMinutes: r.duration,
+					name: r.station.name,
+					duration: durationCategory(r.timeMinutes),
+					durationMinutes: r.timeMinutes,
 					frequency: r.frequency,
 					frequencyScale: frequencyScale(r.frequency),
 					calendarUrl: r.calendarUrl,
@@ -234,7 +210,6 @@ const selectLocation = async (id, local) => {
 				},
 			})), x => (-1) * x.properties.duration)
 			geojson.features = features
-			geojson.features.push(stationFeature)
 
 			const source = {
 				type: 'geojson',

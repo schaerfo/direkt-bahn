@@ -4,7 +4,7 @@ import countries from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'
 import deLocale from 'i18n-iso-countries/langs/de.json'
 
-export const fetchStation = async (query) => fetch(`https://v5.db.transport.rest/locations?query=${query}&poi=false&addresses=false`)
+export const fetchStation = async (query) => fetch(`http://localhost:8000/api/station/v1?query=${query}`)
 
 countries.registerLocale(enLocale)
 countries.registerLocale(deLocale)
