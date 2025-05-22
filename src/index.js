@@ -186,6 +186,9 @@ map.addControl(geocoder)
 let popupOpenSince = null
 let popupOpenFor = null
 const selectLocation = async (id, local) => {
+	geocoder.setPlaceholder(origin.name || translate('searchPlaceholder'))
+	geocoder.setInput('')
+
 	const geojson = {
 		type: 'FeatureCollection',
 		features: [],
@@ -210,6 +213,20 @@ const selectLocation = async (id, local) => {
 				},
 			})), x => (-1) * x.properties.duration)
 			geojson.features = features
+			const origin = await results.origin
+			const pageTitle = document.querySelector('title')
+			if (origin.name) pageTitle.innerHTML = [encode(origin.name), translate('baseTitle')].join(' | ')
+			const stationFeature = {
+				type: 'feature',
+				geometry: locationToPoint(origin.location),
+				properties: {
+					type: 1,
+					name: origin.name,
+					duration: durationCategory(0),
+					durationMinutes: 0,
+				},
+			}
+			geojson.features.push(stationFeature)
 
 			const source = {
 				type: 'geojson',

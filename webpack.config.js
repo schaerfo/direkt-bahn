@@ -8,4 +8,5 @@ export default {
 		path: resolve(dirname(fileURLToPath(import.meta.url)), 'assets'),
 		filename: 'bundle.js',
 	},
+	devtool: 'eval-source-map',
 }
