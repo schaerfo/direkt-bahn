@@ -48,16 +48,20 @@ const translations = {
 		en: 'Local and regional trains',
 	},
 	maintenanceNotice: {
-		de: '<p style="font-size: 40pt; margin: 10pt">🚧</p><p>Hintergrund: Diese Seite nutzt die HAFAS mgate-API, welche von der alten (vor 2023) DB Navigator-App verwendet wurde. ' +
-			'Die neue Version des DB-Navigators nutzt hingegen ein anderes Backend.</p><p>Mittlerweile wurde das alte Backend anscheinend endgültig abgeschaltet, ' +
-			'sodass Drittseiten, welche die API verwenden (so wie diese), nicht mehr funktionieren.</p><p><b>Doch keine Sorge!</b> Eine neue Version ist bereits in Arbeit, mit höherer Verfügbarkeit und kürzeren Antwortzeiten!</p>',
-		en: '<p style="font-size: 40pt; margin: 10pt">🚧</p><p>Background: This website uses the HAFAS mgate API operated by DB Fernverkehr AG which was used by the old (pre 2023) DB Navigator mobile app. ' +
-			'The new version of DB Navigator, however, uses a different backend.</p><p>Now, it seems that the old backend service has been disabled for good, ' +
-			'so third-party sites using the API (such as this one) do not work anymore.</p><p><b>But worry not!</b> A new version is already in the works, with higher availability and faster responses!</p>',
+		de: '<p style="font-size: 40pt; margin: 10pt">🥳</p><p>Einiges funktioniert <em>noch</em> nicht wieder:</p><ul>' +
+			'<li>Bahnhöfe tauchen mehrmals in den Ergebnissen auf</li>' +
+			'<li>Es sind nur Verbindungen in Deutschland enthalten</li>' +
+			'<li>Filtern nach Nah- und Fernverkehr ist nicht möglich</li>' +
+			'</ul><p>Wir hoffen, dass der Service dennoch nützlich ist!</p>',
+		en: '<p style="font-size: 40pt; margin: 10pt">🥳</p><p>Some things do not work again <em>yet</em>:</p><ul>' +
+			'<li>Stations are shown in the results multiple times</li>' +
+			'<li>Only connections in Germany are found</li>' +
+			'<li>Filtering for regional and long-distance trains is not possible</li>' +
+			'</ul><p>We hope that the service is useful for you anyway!</p>',
 	},
 	maintenanceNoticeTitle: {
-		de: 'Die Verfügbarkeit ist derzeit eingeschränkt',
-		en: 'This service is currently degraded',
+		de: 'Wir sind ZURÜCK!',
+		en: 'We are BACK!',
 	},
 	redirectionAlertTitle: {
 		de: 'Verbindungsdetails',
@@ -428,4 +432,5 @@ map.addControl(new MapboxFilterControl([
 Sweetalert.fire({
 	title: translate('maintenanceNoticeTitle'),
 	html: translate('maintenanceNotice'),
+	width: '35em',
 })

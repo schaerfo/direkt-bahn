@@ -8,3 +8,7 @@ body {
 	max-width: 250px;
 	font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+
+li {
+	text-align: left;
+}
