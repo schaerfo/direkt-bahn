@@ -13,14 +13,10 @@ import { getUserLocales } from 'get-user-locale'
 
 import {
 	formatStationId,
-	stationById,
 	locationToPoint,
 	durationCategory,
 	durationCategoryColour,
 	toPoint,
-	isLongDistanceOrRegionalOrSuburban,
-	isRegion,
-	hasLocation,
 	fetchStation,
 	frequencyScale,
 } from './helpers.js'
