@@ -23,7 +23,7 @@ export class MapboxFilterControl {
 		this.entryButton.type = 'button'
 		this.mapStyleContainer.classList.add('mapboxgl-filter-list')
 
-		const activeEntry = this.entries.find(e => e.isActive)
+		/* const activeEntry = this.entries.find(e => e.isActive)
 		const activeIsDefault = activeEntry && (activeEntry.id === this.defaultEntry)
 
 		for (const entry of this.entries) {
@@ -49,7 +49,7 @@ export class MapboxFilterControl {
 			this.mapStyleContainer.appendChild(entryElement)
 		}
 
-		this.mapStyleContainer.appendChild(document.createElement('hr'))
+		this.mapStyleContainer.appendChild(document.createElement('hr')) */
 		const ormToggle = document.createElement('button')
 		ormToggle.addEventListener('click', event => {
 			const button = event.target
@@ -67,7 +67,7 @@ export class MapboxFilterControl {
 
 		this.entryButton.classList.add('mapboxgl-ctrl-icon')
 		this.entryButton.classList.add('mapboxgl-filter-switch')
-		if (!activeIsDefault) this.entryButton.classList.add('active')
+		// if (!activeIsDefault) this.entryButton.classList.add('active')
 		this.entryButton.addEventListener('click', event => { this.openModal() })
 
 		document.addEventListener('click', this.onDocumentClick)
