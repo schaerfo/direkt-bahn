@@ -275,33 +275,6 @@ const selectLocation = async (id, local) => {
 				},
 			})
 
-			map.on('click', 'stations', async e => {
-				const { dbUrlGerman, dbUrlEnglish, calendarUrl, type } = e.features[0].properties
-				if (type === 1) return // don't show popup when origin is clicked
-
-				console.log(e.features[0].properties)
-				if (!(popupOpenSince && (+new Date() - (+popupOpenSince) > 50) && popupOpenFor === dbUrlGerman)) return // @todo xD
-				const { isConfirmed, isDenied } = await Sweetalert.fire({
-					title: translate('redirectionAlertTitle'),
-					html: local
-						? [translate('redirectionAlertMessage'), translate('redirectionAlertLocalTrainWarning')].join('<br><br>')
-						: translate('redirectionAlertMessage'),
-					showCancelButton: true,
-					cancelButtonText: translate('redirectionAlertCancel'),
-					showDenyButton: true,
-					denyButtonText: translate('redirectionAlertCalendar'),
-					denyButtonColor: '#999999',
-					showConfirmButton: true,
-					confirmButtonText: translate('redirectionAlertDb'),
-					confirmButtonColor: '#3085d6',
-				})
-				if (isConfirmed) {
-					if (language.toLowerCase() === 'de' && dbUrlGerman) window.open(dbUrlGerman, 'target_' + dbUrlGerman)
-					else if (dbUrlEnglish) window.open(dbUrlEnglish, 'target_' + dbUrlEnglish)
-				}
-				if (isDenied && calendarUrl) window.open(calendarUrl, 'target_' + calendarUrl)
-			})
-
 			map.on('mouseenter', 'stations', e => {
 				const coordinates = e.features[0].geometry.coordinates.slice()
 				const { name, duration, durationMinutes, frequency, dbUrlGerman } = e.features[0].properties
