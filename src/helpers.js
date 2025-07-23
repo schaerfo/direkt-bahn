@@ -4,7 +4,7 @@ import countries from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'
 import deLocale from 'i18n-iso-countries/langs/de.json'
 
-export const fetchStation = async (query) => fetch(`https://api.direkt-bahn.v6.rocks/api/station/v1?query=${query}`)
+export const fetchStation = async (query) => fetch(`https://direct-trains.eu/api/station/v1?query=${query}`)
 
 countries.registerLocale(enLocale)
 countries.registerLocale(deLocale)

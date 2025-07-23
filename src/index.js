@@ -193,7 +193,7 @@ const selectLocation = async (id, local) => {
 		type: 'FeatureCollection',
 		features: [],
 	}
-	return fetch(`https://api.direkt-bahn.v6.rocks/api/query/v1/${id}`)
+	return fetch(`https://direct-trains.eu/api/query/v1/${id}`)
 		.then(res => res.json())
 		.then(async results => {
 			const resultsWithLocations = results.data.filter(r => !!r.station.location)
