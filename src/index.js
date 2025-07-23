@@ -44,20 +44,20 @@ const translations = {
 		en: 'Local and regional trains',
 	},
 	maintenanceNotice: {
-		de: '<p style="font-size: 40pt; margin: 10pt">🥳</p><p>Einiges funktioniert <em>noch</em> nicht wieder:</p><ul>' +
-			'<li>Bahnhöfe tauchen mehrmals in den Ergebnissen auf</li>' +
-			'<li>Es sind nur Verbindungen in Deutschland enthalten</li>' +
-			'<li>Filtern nach Nah- und Fernverkehr ist nicht möglich</li>' +
-			'</ul><p>Wir hoffen, dass der Service dennoch nützlich ist!</p>',
-		en: '<p style="font-size: 40pt; margin: 10pt">🥳</p><p>Some things do not work again <em>yet</em>:</p><ul>' +
-			'<li>Stations are shown in the results multiple times</li>' +
-			'<li>Only connections in Germany are found</li>' +
-			'<li>Filtering for regional and long-distance trains is not possible</li>' +
-			'</ul><p>We hope that the service is useful for you anyway!</p>',
+		de: '<p style="font-size: 40pt; margin: 10pt">🚚</p>' +
+			'<p>Besuchen Sie unser neues Zuhause unter</p>' +
+			'<p style="font-size: 20pt"><a href="https://direct-trains.eu/">direct-trains.eu</a></p>' +
+			'<p>Die neue Version ist noch übersichtlicher und einfacher zu benutzen. In der nächsten Zeit werden dort auch neue Funktionen hinzugefügt werden.</p>' +
+			'<p>Wir hoffen, dass es Ihnen gefällt!</p>',
+		en: '<p style="font-size: 40pt; margin: 10pt">🚚</p>' +
+			'<p>Visit our new home at</p><ul>' +
+			'<p style="font-size: 20pt"><a href="https://direct-trains.eu/">direct-trains.eu</a></p>' +
+			'<p>We took great care to make the new version even more usable. New features will also be added there in the near future.</p>' +
+			'<p>We hope that you will like it!</p>',
 	},
 	maintenanceNoticeTitle: {
-		de: 'Wir sind ZURÜCK!',
-		en: 'We are BACK!',
+		de: 'Wir ziehen um!',
+		en: 'We are moving!',
 	},
 	redirectionAlertTitle: {
 		de: 'Verbindungsdetails',
