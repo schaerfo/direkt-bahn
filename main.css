@@ -1,0 +1,62 @@
+@font-face {
+    font-family: "Source Sans 3";
+    src: url("SourceSans3-Regular.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "Source Sans 3";
+    src: url("SourceSans3-Bold.ttf") format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+body {
+    margin: 0;
+    font-family: "Source Sans 3", sans-serif;
+    font-size: 1.2em;
+    background-color: #FEF7FF;
+    color: #1D1B20;
+}
+.frame {
+    position: fixed;
+    display: table;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+}
+.container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.card {
+    display: inline-block;
+    border: 1px #79747E solid;
+    border-radius: 10px;
+    padding: 0.5em;
+    background-color: #F3EDF7;
+}
+.link {
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+p {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+h1 {
+    font-size: 2.5em;
+    margin-top: 0;
+    margin-bottom: 0.4em;
+}
+a {
+    text-decoration: none;
+    color: #0066cc;
+}
+a:hover {
+    text-decoration: underline;
+}
