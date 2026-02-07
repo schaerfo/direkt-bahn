@@ -1,14 +1,10 @@
 @font-face {
     font-family: "Source Sans 3";
-    src: url("SourceSans3-Regular.ttf") format('truetype');
-    font-weight: normal;
+    font-weight: 200 900;
     font-style: normal;
-}
-@font-face {
-    font-family: "Source Sans 3";
-    src: url("SourceSans3-Bold.ttf") format('truetype');
-    font-weight: bold;
-    font-style: normal;
+    font-stretch: normal;
+    src: url('SourceSans3VF-Upright.otf.woff2') format('woff2-variations');
+
 }
 body {
     margin: 0;
